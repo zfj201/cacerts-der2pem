@@ -1,0 +1,14 @@
+# Generated build, test and device data
+*.jar
+*.zip
+*.class
+*.dex
+*.key
+*.pem
+*.der
+__pycache__/
+.DS_Store
+build/
+dist/
+runtime/
+tests/results/

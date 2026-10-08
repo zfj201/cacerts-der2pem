@@ -1,0 +1,29 @@
+name: Build and test
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  host:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - name: Install SDK components
+        run: sdkmanager 'build-tools;36.0.0' 'platforms;android-36'
+      - name: Check shell syntax and host behavior
+        run: |
+          for script in *.sh; do sh -n "$script"; done
+          python3 tests/test_certtool.py
+      - name: Build module
+        run: sh pack.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cacerts-der2pem-module
+          path: cacerts-der2pem.zip
