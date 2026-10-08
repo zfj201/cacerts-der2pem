@@ -92,7 +92,7 @@ ANDROID_SERIAL=YOUR_TEST_DEVICE python3 tests/test_mounts.py
 
 第一个仅操作临时测试文件；第二个依赖 KernelSU BusyBox 的 `unshare`，在私有挂载命名空间内建立临时挂载，不操作活跃 CA 目录。两者都不安装模块或重启设备。测试输出被 Git 忽略。详细边界见 [验证记录](tests/VALIDATION.md)。
 
-可选 GitHub Actions 配置保存在 `docs/ci-workflow.example.yml`，本次发布尚未启用。具有 GitHub 工作流权限的仓库所有者可将其放入 `.github/workflows/ci.yml`；上述本地构建和测试命令可直接使用。
+GitHub Actions 会在推送和 Pull Request 时运行主机测试并构建模块，配置位于 `.github/workflows/ci.yml`；成功运行后可下载模块 ZIP 构建产物。真机测试仍需手动执行。
 
 ## 许可与致谢
 

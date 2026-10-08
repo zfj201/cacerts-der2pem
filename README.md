@@ -98,7 +98,7 @@ ANDROID_SERIAL=YOUR_TEST_DEVICE python3 tests/test_mounts.py
 
 The first test only uses disposable files. The second requires KernelSU BusyBox with `unshare` and creates temporary mounts inside a private mount namespace, not the live CA stores. Review the scripts before running them. Neither installs this module or reboots the device. Generated device output is ignored by Git. See [tests/VALIDATION.md](tests/VALIDATION.md) for the evidence boundary.
 
-An optional GitHub Actions template is provided at `docs/ci-workflow.example.yml`. It is not active in this release; a repository owner with the required GitHub workflow permissions can place it at `.github/workflows/ci.yml`. Local build and test commands above are ready to use.
+GitHub Actions runs the host tests and builds the module on pushes and pull requests. The workflow is in `.github/workflows/ci.yml`; successful runs provide a module ZIP artifact. Device tests remain manual.
 
 ## License and credits
 
